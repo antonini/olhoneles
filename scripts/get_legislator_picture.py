@@ -20,8 +20,10 @@
 import os
 import urllib2
 import urllib
+
 from BeautifulSoup import BeautifulSoup
 from django.core.files import File
+
 from montanha.models import *
 
 
@@ -38,7 +40,7 @@ for item in ul.findAll("li"):
     try:
         # FIXME
         picture_url = "%s%s" % (SITE_URL, item.find("img")["src"])
-        picture_url= picture_url.rsplit("?__scale=w:109,h:120,t:4")[0]
+        picture_url = picture_url.rsplit("?__scale=w:109,h:120,t:4")[0]
 
         legislator_name = item.find("p", {"class": "titulo"}).find("a").string
         leg = Legislator.objects.get(name=str(legislator_name))
